@@ -1,0 +1,46 @@
+<div>
+  <form class="col-8 offset-2" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="email">Email: </label>
+      <div class="input-group">
+        <input type="email" formControlName="email"
+               placeholder="luckskywalker@rebels.liberty"
+               class="form-control" id="email" required/>
+      </div>
+      <div *ngIf="email.invalid && (email.dirty || email.touched)"
+           class="alert alert-danger">
+
+        <div *ngIf="email.errors.required">
+          email is required.
+        </div>
+        <div *ngIf="email.errors.email">
+          please select a valid email (adcd@abcd.acbd)
+        </div>
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <div class="input-group">
+        <input type="password" formControlName="password" placeholder="********"
+               class="form-control" id="password"/>
+      </div>
+      <div *ngIf="password.invalid && (password.dirty || password.touched)"
+           class="alert alert-danger">
+
+        <div *ngIf="password.errors.required">
+          password is required.
+        </div>
+        <div *ngIf="password.errors.minlength">
+          password must be at least 8 characters long.
+        </div>
+        <div *ngIf="password.errors.pattern">
+          password must have one Uppercase charrecter one special charracter (@$!%*#?&) and some numbers.
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+

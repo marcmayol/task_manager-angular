@@ -1,0 +1,29 @@
+.nav-link ,.btn-outline-primary{
+  padding-left: .5rem;
+  padding-right: .5rem;
+  font-family: 'Gothic A1', sans-serif;
+  font-weight: 800;
+  line-height: 1.6;
+  font-size: 18px;
+}
+
+.nav-link{
+  color: #77787b !important;
+}
+.btn-outline-primary{
+  color: #0081c8 !important;
+  border-color: #0081c8;
+}
+
+.nav-link:hover{
+  color: #0081c8 !important;
+}
+.btn-outline-primary:hover{
+  color: #ffffff !important;
+  border-color: #0081c8;
+}
+a.btn-outline-primary:hover{
+  color: #ffffff !important;
+  border-color: #0081c8;
+}
+

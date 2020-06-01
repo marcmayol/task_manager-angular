@@ -1,0 +1,41 @@
+<h2 class="mb-5 text-center">Create a new task</h2>
+<div class="row">
+  <form [formGroup]="newTask" (ngSubmit)="onSubmit()" class="col-8 offset-2">
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input type="text" [formControl]="description" formControlName="description" name="description" class="form-control" id="description" placeholder="Example input"
+             formControl/>
+      <div *ngIf="description.invalid && (description.dirty || description.touched)"
+           class="alert alert-danger">
+
+        <div *ngIf="description.errors.required">
+          description is required.
+        </div>
+        <div *ngIf="description.errors.minlength">
+          description must be at least 3 characters long.
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="complete">Status</label>
+      <select id="complete" class=" custom-select form-control" formControlName="complete">
+        <option value="true">Complete</option>
+        <option value="false">In progress</option>
+      </select>
+      <div *ngIf="complete.invalid && (complete.dirty || complete.touched)"
+      class="alert alert-danger">
+
+      <div *ngIf="complete.errors.required">
+        status is required.
+      </div>
+    </div>
+</div>
+<div class="form-group text-center pt-2">
+  <button type="submit" role="button" class="btn btn-outline-primary btn-lg" [disabled]="!newTask.valid">Save</button>
+  <div *ngIf="error"
+       class="alert alert-danger">
+    an error has occurred, please review the data and try again
+  </div>
+</div>
+</form>
+</div>

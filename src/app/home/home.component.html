@@ -1,0 +1,52 @@
+<div *ngIf="!toupdate">
+  <h2 class="mb-5 text-center">Welcome to the obs taskManager User 6!</h2>
+  <a [routerLink]="'/task/create'" class="btn btn-outline-primary float-right mb-4">  New Task</a>
+  <a href="javascript:void(0)"  (click)="filterPendingTasks()" class="btn btn-outline-primary float-right mr-3 mb-4"> In Progress</a>
+  <a href="javascript:void(0)"  (click)="clear()" class="btn btn-outline-primary float-right mr-3 mb-4"> All</a>
+  <a href="javascript:void(0)" (click)="filterCompletedTasks()" class="btn btn-outline-primary float-right mr-3 mb-4"> Complete</a>
+  <h4 class="mt-1">Your taks:</h4>
+  <table class="table">
+    <thead class="text-center">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Complete</th>
+      <th scope="col">Description</th>
+      <th scope="col">Options</th>
+    </tr>
+    </thead>
+    <tbody *ngIf="!filterTasks" class="text-center">
+    <tr  *ngFor="let t of tasks; let i = index">
+      <th scope="row">{{i + 1}}</th>
+      <td *ngIf="t.completed">Completed</td>
+      <td *ngIf="!t.completed">In Progress</td>
+      <td>{{t.description}}</td>
+      <td>
+        <button role="button" class="btn btn-primary mr-2" (click)="update(t)">Update</button>
+        <button role="button" class="btn btn-danger mr-2" (click)="delete(t._id)">Delete</button>
+        <button role="button" class="btn btn-success mr-2" (click)="completeTask(t._id)">Complete</button>
+      </td>
+    </tr>
+    </tbody>
+    <tbody *ngIf="filterTasks">
+    <tr *ngFor="let t of filterTasks; let i = index">
+      <th scope="row">{{i + 1}}</th>
+      <td *ngIf="t.completed">Completed</td>
+      <td *ngIf="!t.completed">In Progress</td>
+      <td>{{t.description}}</td>
+      <td>
+        <button role="button" class="btn btn-primary mr-2" (click)="update(t)">Update</button>
+        <button role="button" class="btn btn-danger mr-2" (click)="delete(t._id)">Delete</button>
+        <button role="button" class="btn btn-success mr-2" (click)="completeTask(t._id)">Complete</button>
+      </td>
+    </tr>
+
+    </tbody>
+  </table>
+</div>
+<div *ngIf="toupdate">
+  <task-update [task]="toupdate" (emiter)="updateClomplete($event)"></task-update>
+  <div *ngIf="error"
+       class="alert alert-danger">
+    an error has occurred, please review the data and try again
+  </div>
+</div>
